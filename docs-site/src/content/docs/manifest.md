@@ -3,14 +3,14 @@ title: manifest.json
 description: The schema, why the expectations cannot lie, and what defaultProfile decides.
 ---
 
-`manifest.json` records **what waxlens actually reported** for each specimen. It
+`manifest.json` records **what wacz-validator actually reported** for each specimen. It
 is not a hand-written declaration of what ought to happen, which is why it cannot
 drift away from the implementation: to change what is in it, you have to change
-what waxlens outputs.
+what wacz-validator outputs.
 
 ```jsonc
 {
-  "generatedBy": "waxlens / build-corpus",
+  "generatedBy": "wacz-validator / build-corpus",
   "defaultProfile": "spec",
   "fixtures": [
     // Same result under all three profiles — one `expect`.
@@ -58,7 +58,7 @@ skip.
 
 ## `defaultProfile` decides how the short form is read
 
-waxlens can validate the same archive under three profiles — `spec`,
+wacz-validator can validate the same archive under three profiles — `spec`,
 `browserhive`, `lenient` — and the rules are the same set with severities
 re-graded. **17 of the 29 specimens produce different results depending on which
 one you pick.**
@@ -84,8 +84,8 @@ Changing it does **not** make validation stricter or looser. It only says how to
 read entries that carry one value instead of three. Which profile is actually
 applied is chosen by `--profile` on the CLI.
 
-The [Profiles](https://uraitakahito.github.io/waxlens/profiles/) page in the
-waxlens docs explains what each one re-grades.
+The [Profiles](https://uraitakahito.github.io/wacz-validator/profiles/) page in the
+wacz-validator docs explains what each one re-grades.
 
 ## `good-webrecorder` is valid under `spec` and invalid under `browserhive`
 

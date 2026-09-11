@@ -1,7 +1,7 @@
 /**
  * ビルド成果物に、base の付いていない内部参照が残っていないか検査する。
  *
- * このサイトは https://uraitakahito.github.io/waxlens-corpus/ に置かれるため、
+ * このサイトは https://uraitakahito.github.io/wacz-validator-corpus/ に置かれるため、
  * astro.config.ts が `base` を受け取る。Astro は **Markdown のリンク記法には
  * base と locale を補う**が、**HTML / JSX の属性には一切触れない**。つまり
  *
@@ -15,7 +15,7 @@
  * 誤検知を出した(datapackage で実測)。出力を見れば、Astro が
  * 補ったあとの最終形をそのまま判定できるので誤検知が出ない。
  *
- *   node scripts/check-base-urls.mjs docs-site/dist /waxlens-corpus
+ *   node scripts/check-base-urls.mjs docs-site/dist /wacz-validator-corpus
  */
 import { readdirSync, readFileSync, statSync } from "node:fs"
 import { join } from "node:path"

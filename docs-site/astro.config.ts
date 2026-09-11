@@ -1,10 +1,10 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 
-// GitHub Pages の project site なので /waxlens-corpus 配下に出る。
-const BASE = "/waxlens-corpus";
+// GitHub Pages の project site なので /wacz-validator-corpus 配下に出る。
+const BASE = "/wacz-validator-corpus";
 
-const WAXLENS = "https://uraitakahito.github.io/waxlens";
+const VALIDATOR = "https://uraitakahito.github.io/wacz-validator";
 
 // Rehype プラグイン: markdown 本文内の絶対ローカルリンク (/page/) に base を付与し、
 // /ja/ 配下のページからのリンクには /ja ロケールも注入する。Starlight のサイドバーや
@@ -44,20 +44,20 @@ function rehypeRebaseLinks() {
   };
 }
 
-// waxlens-corpus ドキュメントサイト。英語(root)と日本語(/ja/)を対で持つ。
+// wacz-validator-corpus ドキュメントサイト。英語(root)と日本語(/ja/)を対で持つ。
 //
-// catalogue ページの表は waxlens の `corpus:docs` が manifest.json から生成して
+// catalogue ページの表は wacz-validator の `corpus:docs` が manifest.json から生成して
 // ここに書き込む。fixtures/ と manifest.json と同じ経路(CORPUS_DIR)なので、
-// 依存の向きは waxlens → corpus のまま変わらない。
+// 依存の向きは wacz-validator → corpus のまま変わらない。
 export default defineConfig({
   site: "https://uraitakahito.github.io",
   base: BASE,
   outDir: "dist",
   integrations: [
     starlight({
-      title: "waxlens-corpus",
+      title: "wacz-validator-corpus",
       description:
-        "WACZ specimens for testing waxlens validation rules — 29 archives, 27 of them broken on purpose.",
+        "WACZ specimens for testing wacz-validator validation rules — 29 archives, 27 of them broken on purpose.",
       defaultLocale: "root",
       locales: {
         root: { label: "English", lang: "en" },
@@ -67,7 +67,7 @@ export default defineConfig({
         {
           icon: "github",
           label: "GitHub",
-          href: "https://github.com/uraitakahito/waxlens-corpus",
+          href: "https://github.com/uraitakahito/wacz-validator-corpus",
         },
       ],
       sidebar: [
@@ -99,7 +99,7 @@ export default defineConfig({
             { label: "Checks", translations: { ja: "整合チェック" }, slug: "checks" },
           ],
         },
-        { label: "waxlens ↗", link: WAXLENS + "/" },
+        { label: "wacz-validator ↗", link: VALIDATOR + "/" },
       ],
     }),
   ],

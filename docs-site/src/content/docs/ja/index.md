@@ -1,9 +1,9 @@
 ---
-title: waxlens-corpus
-description: waxlens の validation rule を検証するための WACZ 標本集。29 本のうち 28 本は意図的に壊してあります。
+title: wacz-validator-corpus
+description: wacz-validator の validation rule を検証するための WACZ 標本集。29 本のうち 28 本は意図的に壊してあります。
 ---
 
-[waxlens](https://uraitakahito.github.io/waxlens/ja/) の validation rule を
+[wacz-validator](https://uraitakahito.github.io/wacz-validator/ja/) の validation rule を
 検証するための WACZ 標本集です。
 
 ## 「正しいアーカイブ」を集めたものではありません
@@ -13,7 +13,7 @@ description: waxlens の validation rule を検証するための WACZ 標本集
 | 意図的に壊してあるもの | **28** |
 | 全 rule を通るもの | **2**（`good` / `good-webrecorder`） |
 
-これは waxlens に WACZ 形式のサンプルデータを提供するものです。
+これは wacz-validator に WACZ 形式のサンプルデータを提供するものです。
 **28 件については「何も指摘が出ない」ことが失敗**です。
 
 うち 1 件は壊れているというより、別の仕様に忠実です ——
@@ -34,7 +34,7 @@ warning は valid を覆しません。
 
 ```
 fixtures/            全標本（Git LFS）
-manifest.json        waxlens が実際に報告した結果
+manifest.json        wacz-validator が実際に報告した結果
 scripts/
   check-manifest.mjs manifest ↔ fixtures の整合チェック（依存ゼロ）
 docs-site/           このサイト

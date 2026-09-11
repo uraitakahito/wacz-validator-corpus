@@ -1,7 +1,7 @@
 # manifest.json ↔ fixtures/ の整合チェック。
 #
-# waxlens 非依存で、ファイル名しか見ないので LFS 実体は不要 (lfs: false)。
-# 実 validation との一致は waxlens 側の corpus.yml が見る。
+# wacz-validator 非依存で、ファイル名しか見ないので LFS 実体は不要 (lfs: false)。
+# 実 validation との一致は wacz-validator 側の corpus.yml が見る。
 name: check
 
 on:

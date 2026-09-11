@@ -4,8 +4,8 @@ description: How the specimens are produced — and what the command destroys be
 ---
 
 Nothing in `fixtures/` or `manifest.json` is written by hand. Both come out of a
-generator that lives in **waxlens**, because the builder it uses (`buildWacz`) is
-internal to waxlens's test suite rather than public API.
+generator that lives in **wacz-validator**, because the builder it uses (`buildWacz`) is
+internal to wacz-validator's test suite rather than public API.
 
 :::danger[`fixtures/` is deleted before anything is written]
 The first thing `corpus:build` does is remove the directory:
@@ -22,25 +22,25 @@ is clean before running it.
 ## Running it
 
 ```sh
-# From a waxlens clone, pointing CORPUS_DIR at this repository.
+# From a wacz-validator clone, pointing CORPUS_DIR at this repository.
 # vitest runs with packages/core as its CWD, so use an absolute path.
-cd /path/to/waxlens
-CORPUS_DIR=/path/to/waxlens-corpus pnpm --filter @waxlens/core corpus:build
-CORPUS_DIR=/path/to/waxlens-corpus pnpm --filter @waxlens/core corpus:docs
+cd /path/to/wacz-validator
+CORPUS_DIR=/path/to/wacz-validator-corpus pnpm --filter @wacz-validator/core corpus:build
+CORPUS_DIR=/path/to/wacz-validator-corpus pnpm --filter @wacz-validator/core corpus:docs
 ```
 
 `corpus:build` writes `fixtures/` and `manifest.json`; `corpus:docs` writes the
 table on the [Catalogue](/catalogue/) page. Both land in `CORPUS_DIR`, so the
-dependency runs one way — waxlens knows about the corpus, never the reverse.
+dependency runs one way — wacz-validator knows about the corpus, never the reverse.
 
 ## Generation is deterministic
 
-The generator fixes zip entry mtimes, so the same waxlens revision produces
+The generator fixes zip entry mtimes, so the same wacz-validator revision produces
 **byte-identical** specimens. Re-running does not churn Git LFS.
 
 ## To change a specimen
 
-Edit `packages/core/test/corpus/spec.ts` in waxlens and regenerate. Each entry
+Edit `packages/core/test/corpus/spec.ts` in wacz-validator and regenerate. Each entry
 declares how to break the archive (`options`) and which rule that should trip
 (`expectRules`) — and the generator asserts the rule really fires before it
 records anything.

@@ -4,7 +4,7 @@ description: 全標本と、それぞれが何に違反し、profile で判定�
 ---
 
 corpus の `manifest.json` から `corpus:docs` が生成します。再生成は
-`CORPUS_DIR=<path> pnpm --filter @waxlens/core corpus:docs` です。
+`CORPUS_DIR=<path> pnpm --filter @wacz-validator/core corpus:docs` です。
 
 `$schema` 列は各標本の `datapackage.json` が宣言する値です。値が入るのは
 `datapackage-schema-only` の 1 行だけで、残りは v1 の `profile` で名乗るため `—`

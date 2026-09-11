@@ -1,9 +1,9 @@
 ---
-title: waxlens-corpus
-description: WACZ specimens for testing waxlens validation rules — 29 archives, 28 of them broken on purpose.
+title: wacz-validator-corpus
+description: WACZ specimens for testing wacz-validator validation rules — 29 archives, 28 of them broken on purpose.
 ---
 
-A collection of WACZ specimens for exercising [waxlens](https://uraitakahito.github.io/waxlens/)
+A collection of WACZ specimens for exercising [wacz-validator](https://uraitakahito.github.io/wacz-validator/)
 validation rules.
 
 ## It is not a collection of good archives
@@ -13,7 +13,7 @@ validation rules.
 | Deliberately broken | **28** |
 | Passing everything | **2** (`good`, `good-webrecorder`) |
 
-This provides WACZ-format sample data to waxlens. For 28 of the 29 specimens,
+This provides WACZ-format sample data to wacz-validator. For 28 of the 29 specimens,
 **producing no findings is a failure**.
 
 One of those 28 is not broken so much as loyal to a different spec:
@@ -34,7 +34,7 @@ So "has a finding" and "is invalid" are separate axes. The
 
 ```
 fixtures/            every specimen (Git LFS)
-manifest.json        what waxlens actually reports for each one
+manifest.json        what wacz-validator actually reports for each one
 scripts/
   check-manifest.mjs manifest ↔ fixtures consistency (no dependencies)
 docs-site/           this site
