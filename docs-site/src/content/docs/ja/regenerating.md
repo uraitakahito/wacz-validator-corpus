@@ -3,8 +3,8 @@ title: 再生成
 description: 標本の作られ方と、コマンドが走る前に何を破壊するか。
 ---
 
-`fixtures/` も `manifest.json` も手書きではありません。どちらも **waxlens 側**の
-generator が作ります —— 使っている builder（`buildWacz`）が waxlens のテスト内部の
+`fixtures/` も `manifest.json` も手書きではありません。どちらも **wacz-validator 側**の
+generator が作ります —— 使っている builder（`buildWacz`）が wacz-validator のテスト内部の
 ものであって public API ではないためです。
 
 :::danger[`fixtures/` は書き込みの前に削除されます]
@@ -21,25 +21,25 @@ await rm(join(out, "fixtures"), { recursive: true, force: true });
 ## 実行方法
 
 ```sh
-# waxlens の clone から、CORPUS_DIR にこの repo の絶対パスを渡す。
+# wacz-validator の clone から、CORPUS_DIR にこの repo の絶対パスを渡す。
 # vitest は packages/core を CWD に走るので、相対パスは避ける。
-cd /path/to/waxlens
-CORPUS_DIR=/path/to/waxlens-corpus pnpm --filter @waxlens/core corpus:build
-CORPUS_DIR=/path/to/waxlens-corpus pnpm --filter @waxlens/core corpus:docs
+cd /path/to/wacz-validator
+CORPUS_DIR=/path/to/wacz-validator-corpus pnpm --filter @wacz-validator/core corpus:build
+CORPUS_DIR=/path/to/wacz-validator-corpus pnpm --filter @wacz-validator/core corpus:docs
 ```
 
 `corpus:build` は `fixtures/` と `manifest.json` を、`corpus:docs` は
 [カタログ](/catalogue/)の表を書きます。どちらも `CORPUS_DIR` 配下に落ちるので、
-依存は一方向です —— waxlens が corpus を知っており、逆はありません。
+依存は一方向です —— wacz-validator が corpus を知っており、逆はありません。
 
 ## 生成は決定的です
 
-generator は zip entry の mtime を固定値で書くので、同じ waxlens revision からは
+generator は zip entry の mtime を固定値で書くので、同じ wacz-validator revision からは
 **バイト単位で同一**の標本が出ます。再生成しても Git LFS が膨らみません。
 
 ## 標本を変えるには
 
-waxlens 側の `packages/core/test/corpus/spec.ts` を編集して再生成します。各エントリは
+wacz-validator 側の `packages/core/test/corpus/spec.ts` を編集して再生成します。各エントリは
 「どう壊すか」（`options`）と「どの rule が出るはずか」（`expectRules`）を宣言し、
 generator は**記録する前に、その rule が実際に発火したことを assert** します。
 

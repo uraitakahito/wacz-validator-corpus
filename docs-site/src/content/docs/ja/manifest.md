@@ -3,13 +3,13 @@ title: manifest.json
 description: スキーマと、期待値が嘘をつけない理由と、defaultProfile が決めていること。
 ---
 
-`manifest.json` は、各標本について **waxlens が実際に報告した結果**を記録した
+`manifest.json` は、各標本について **wacz-validator が実際に報告した結果**を記録した
 ものです。「こうあるべき」という手書きの宣言ではないので、実装とズレようが
-ありません —— 中身を変えたければ、waxlens の出力を変えるしかないからです。
+ありません —— 中身を変えたければ、wacz-validator の出力を変えるしかないからです。
 
 ```jsonc
 {
-  "generatedBy": "waxlens / build-corpus",
+  "generatedBy": "wacz-validator / build-corpus",
   "defaultProfile": "spec",
   "fixtures": [
     // 3 profile で結果が同じ標本は expect 1 本
@@ -54,7 +54,7 @@ description: スキーマと、期待値が嘘をつけない理由と、default
 
 ## `defaultProfile` は「省略形の読み方」を決めます
 
-waxlens は同じアーカイブを 3 つの profile —— `spec` / `browserhive` /
+wacz-validator は同じアーカイブを 3 つの profile —— `spec` / `browserhive` /
 `lenient` —— で検証できます。rule の集合は同じで、severity が組み替わります。
 **29 件のうち 17 件は、どれを選ぶかで結果が変わります。**
 
@@ -79,8 +79,8 @@ if (fixture.expect) {
 エントリの読み方を述べているだけです。実際に適用する profile は CLI の
 `--profile` で選びます。
 
-各 profile が何を組み替えるかは waxlens 側の
-[プロファイル](https://uraitakahito.github.io/waxlens/ja/profiles/)にあります。
+各 profile が何を組み替えるかは wacz-validator 側の
+[プロファイル](https://uraitakahito.github.io/wacz-validator/ja/profiles/)にあります。
 
 ## `good-webrecorder` は spec で valid、browserhive で invalid です
 

@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /**
- * manifest.json ↔ fixtures/ の整合チェック (waxlens 非依存)。
+ * manifest.json ↔ fixtures/ の整合チェック (wacz-validator 非依存)。
  *
  *   - manifest が参照する file がすべて実在するか
  *   - fixtures/ に manifest 未記載の孤児 *.wacz が無いか
  *
  * 実 validation との一致 (各 fixture が manifest の期待どおりの issue を
- * 出すか) は waxlens 側が corpus を取得して検証する。ここはファイル名の
+ * 出すか) は wacz-validator 側が corpus を取得して検証する。ここはファイル名の
  * 整合のみを見るので Git LFS 実体の取得は不要。
  *
  * repo ルートで実行する: `node scripts/check-manifest.mjs`

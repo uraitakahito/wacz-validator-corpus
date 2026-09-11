@@ -2,7 +2,7 @@
 #
 # WACZ の実体(Git LFS)は要らない —— docs のビルドは manifest.json と
 # markdown しか読まないので、lfs: false で帯域を使わずに済む。実体が要るのは
-# waxlens 側の corpus.yml（凍結された bytes を検証する回帰ゲート）だけ。
+# wacz-validator 側の corpus.yml（凍結された bytes を検証する回帰ゲート）だけ。
 name: docs
 
 on:
@@ -43,7 +43,7 @@ jobs:
       # 出力に base の付かない内部参照が無いか。Astro は markdown のリンクには
       # base を補うが HTML/JSX の属性と frontmatter には触れず、ビルドも警告を
       # 出さないので、公開して 404 を踏むまで気付けない。
-      - run: node scripts/check-base-urls.mjs docs-site/dist /waxlens-corpus
+      - run: node scripts/check-base-urls.mjs docs-site/dist /wacz-validator-corpus
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs-site/dist

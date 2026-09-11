@@ -6,8 +6,8 @@ description: 3 つの検査がこのコーパスを守っています。それ�
 | 検査 | 走る場所 | LFS 実体 | 何を見るか |
 | --- | --- | --- | --- |
 | `check-manifest.mjs` | ここ | 不要 | manifest ↔ `fixtures/` の**ファイル名** |
-| `test:corpus` | waxlens | **必要** | 凍結された bytes が凍結されたレポートを生むか |
-| `corpus:docs:check` | waxlens | 不要 | カタログの表が `manifest.json` と一致するか |
+| `test:corpus` | wacz-validator | **必要** | 凍結された bytes が凍結されたレポートを生むか |
+| `corpus:docs:check` | wacz-validator | 不要 | カタログの表が `manifest.json` と一致するか |
 
 ## `node scripts/check-manifest.mjs`
 
@@ -20,7 +20,7 @@ manifest が参照しているのに存在しない標本と、誰も宣言し�
 
 ## `test:corpus` —— 本丸の回帰ゲート
 
-重要なのはこれです。manifest をループし、committed な `.wacz` をいまの waxlens で
+重要なのはこれです。manifest をループし、committed な `.wacz` をいまの wacz-validator で
 検証して、出力が**完全に一致する**ことを assert します。
 
 普通のテストは「この入力でこの rule が出る」を確かめますが、それでは 2 つを
@@ -33,7 +33,7 @@ manifest が参照しているのに存在しない標本と、誰も宣言し�
 | severity が動いた | `warning` ↔ `error` の格上げ／格下げ |
 
 意図した変更なら `corpus:build` を走らせます。manifest の差分が
-**「waxlens の出力がどう変わったか」の記録**になり、PR でレビューできます。
+**「wacz-validator の出力がどう変わったか」の記録**になり、PR でレビューできます。
 
 `git lfs pull` が要るのはこの検査だけです。
 

@@ -6,8 +6,8 @@ description: Three checks guard this corpus. Each one covers something the other
 | Check | Runs where | Needs LFS | What it covers |
 | --- | --- | --- | --- |
 | `check-manifest.mjs` | here | no | manifest ↔ `fixtures/` **file names** |
-| `test:corpus` | waxlens | **yes** | frozen bytes still produce the frozen report |
-| `corpus:docs:check` | waxlens | no | the catalogue table matches `manifest.json` |
+| `test:corpus` | wacz-validator | **yes** | frozen bytes still produce the frozen report |
+| `corpus:docs:check` | wacz-validator | no | the catalogue table matches `manifest.json` |
 
 ## `node scripts/check-manifest.mjs`
 
@@ -22,7 +22,7 @@ require a toolchain.
 ## `test:corpus` — the real regression gate
 
 This is the one that matters. It loops the manifest, validates each committed
-`.wacz` with the current waxlens, and asserts the output matches **exactly**.
+`.wacz` with the current wacz-validator, and asserts the output matches **exactly**.
 
 Ordinary tests assert "this input trips this rule", which misses two things.
 Exact matching catches all three ways output can drift:
@@ -34,7 +34,7 @@ Exact matching catches all three ways output can drift:
 | a severity moved | `warning` ↔ `error` re-grading |
 
 When a change is intentional, run `corpus:build` and the manifest diff becomes
-the record of **how waxlens's output changed** — reviewable in the pull request.
+the record of **how wacz-validator's output changed** — reviewable in the pull request.
 
 This is the only check that needs `git lfs pull`.
 
