@@ -7,15 +7,11 @@ name: docs
 
 on:
   push:
-    branches: [main]
-    # docs に関係するものだけ。fixtures/*.wacz の差し替えでは
-    # サイトの中身が変わらないので、LFS の push で毎回 deploy しない。
-    # manifest.json は catalogue の表の生成元なので対象に含める。
-    paths:
-      - "docs-site/**"
-      - "manifest.json"
-      - "scripts/check-base-urls.mjs"
-      - ".github/workflows/docs.yml"
+    # リリースのタグ (v*) を push したときだけ。公開する docs は、出した版の docs にする。
+    # main への push では走らせない —— main には、まだ出していない変更も入る。
+    # github-pages の環境も、v* のタグからの deploy だけを許す。
+    # 公開し直すときは、タグを指して起こす (gh workflow run docs.yml --ref vX.Y.Z)。
+    tags: ["v*"]
   workflow_dispatch:
 
 permissions:
