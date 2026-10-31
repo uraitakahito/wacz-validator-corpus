@@ -701,6 +701,10 @@
             {
               "rule": "warc/extension-gzip-match",
               "severity": "warning"
+            },
+            {
+              "rule": "cdxj/warc-offsets",
+              "severity": "error"
             }
           ]
         },
@@ -718,6 +722,10 @@
             {
               "rule": "warc/extension-gzip-match",
               "severity": "warning"
+            },
+            {
+              "rule": "cdxj/warc-offsets",
+              "severity": "error"
             }
           ]
         },
@@ -735,6 +743,10 @@
             {
               "rule": "warc/extension-gzip-match",
               "severity": "info"
+            },
+            {
+              "rule": "cdxj/warc-offsets",
+              "severity": "warning"
             }
           ]
         }

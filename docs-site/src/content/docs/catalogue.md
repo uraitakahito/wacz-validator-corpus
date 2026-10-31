@@ -39,7 +39,7 @@ The `$schema` column is what each specimen's `datapackage.json` declares. Only
 | `warc-deflate.wacz` | WARC を DEFLATE 格納 (STORE であるべき) — warning | — | `warc/storage-store` (warning) | 0 |
 | `warc-corrupt-member.wacz` | WARC.gz の deflate stream を 1 byte 破壊 (decode 不能) | — | `warc/members-independent` (error), `cdxj/warc-offsets` (error) | 1 |
 | `warc-payload-digest-bad.wacz` | WARC-Payload-Digest header が実体と不一致 — warning | — | `warc/payload-digest` (warning) | 0 |
-| `warc-extension-mismatch.wacz` | gzip 済み WARC を .warc.gz でなく archive/data.warc 名で格納(§5.2.1 拡張子) | — | `datapackage/resource-hashes` (error), `datapackage/resources-complete` (warning), `warc/extension-gzip-match` (warning) | 1 |
+| `warc-extension-mismatch.wacz` | gzip 済み WARC を .warc.gz でなく archive/data.warc 名で格納(§5.2.1 拡張子) | — | `datapackage/resource-hashes` (error), `datapackage/resources-complete` (warning), `warc/extension-gzip-match` (warning), `cdxj/warc-offsets` (error) | 1 |
 | `pages-bad-line.wacz` | pages.jsonl の page 行が url/ts を欠く(§5.2.3) | — | `pages/page-schema` (warning) | 0 |
 | `datapackage-digest-absent.wacz` | datapackage-digest.json が無い(§5.2.5 SHOULD)— warning | — | `datapackage/digest` (warning) | 0 |
 | `datapackage-digest-bad-hash.wacz` | datapackage-digest.json の hash が datapackage.json と不一致 — error | — | `datapackage/digest` (error) | 1 |
@@ -72,6 +72,7 @@ The `$schema` column is what each specimen's `datapackage.json` declares. Only
 | `warc-extension-mismatch.wacz` | `datapackage/resource-hashes` | error | error | error |
 | `warc-extension-mismatch.wacz` | `datapackage/resources-complete` | warning | warning | info |
 | `warc-extension-mismatch.wacz` | `warc/extension-gzip-match` | warning | warning | info |
+| `warc-extension-mismatch.wacz` | `cdxj/warc-offsets` | error | error | warning |
 | `pages-bad-line.wacz` | `pages/page-schema` | warning | warning | info |
 | `datapackage-digest-absent.wacz` | `datapackage/digest` | warning | warning | info |
 | `reserved-dir-extra-file.wacz` | `wacz/reserved-dirs-clean` | warning | warning | info |
