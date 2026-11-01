@@ -38,13 +38,23 @@ corpus の `manifest.json` から `corpus:docs` が生成します。再生成�
 | `cdxj-gzip-index-not-cdxj.wacz` | webrecorder layout の index.cdx.gz を gunzip すると非CDXJ(§5.2.2 後半 MAY be gzip compressed の中身検証)。index-valid-data が error、webrecorder layout 由来の index-not-gzipped も連鎖 | — | `cdxj/index-valid-data` (error), `cdxj/index-not-gzipped` (warning) | 1 |
 | `warc-deflate.wacz` | WARC を DEFLATE 格納 (STORE であるべき) — warning | — | `warc/storage-store` (warning) | 0 |
 | `warc-corrupt-member.wacz` | WARC.gz の deflate stream を 1 byte 破壊 (decode 不能) | — | `warc/members-independent` (error), `cdxj/warc-offsets` (error) | 1 |
-| `warc-payload-digest-bad.wacz` | WARC-Payload-Digest header が実体と不一致 — warning | — | `warc/payload-digest` (warning) | 0 |
+| `warc-payload-digest-bad.wacz` | 応答の WARC-Payload-Digest が実体と不一致 — warning | — | `warc/payload-digest` (warning) | 0 |
 | `warc-extension-mismatch.wacz` | gzip 済み WARC を .warc.gz でなく archive/data.warc 名で格納(§5.2.1 拡張子) | — | `datapackage/resource-hashes` (error), `datapackage/resources-complete` (warning), `warc/extension-gzip-match` (warning), `cdxj/warc-offsets` (error) | 1 |
 | `pages-bad-line.wacz` | pages.jsonl の page 行が url/ts を欠く(§5.2.3) | — | `pages/page-schema` (warning) | 0 |
 | `datapackage-digest-absent.wacz` | datapackage-digest.json が無い(§5.2.5 SHOULD)— warning | — | `datapackage/digest` (warning) | 0 |
 | `datapackage-digest-bad-hash.wacz` | datapackage-digest.json の hash が datapackage.json と不一致 — error | — | `datapackage/digest` (error) | 1 |
 | `reserved-dir-extra-file.wacz` | 予約ディレクトリ archive/ に異物ファイル(archive/notes.txt)— MUST NOT | — | `wacz/reserved-dirs-clean` (warning), `datapackage/resources-complete` (warning) | 0 |
 | `datapackage-orphan-file.wacz` | resources に未宣言の孤児ファイル(extra.bin)— MUST | — | `datapackage/resources-complete` (warning) | 0 |
+| `warc11-version-1-0.wacz` | WARC の記録が WARC/1.0 を名乗る (1.1 の決まりで見て版を告げる。spec で warning) | — | `warc/record-structure` (warning) | 0 |
+| `warc11-lf-line-endings.wacz` | WARC の記録の見出しの行が CRLF でなく LF で終わる — error | — | `warc/record-structure` (error) | 1 |
+| `warc11-content-length-mismatch.wacz` | warcinfo の Content-Length が block の実体と合わない — error | — | `warc/record-structure` (error) | 1 |
+| `warc11-missing-record-id.wacz` | warcinfo に WARC-Record-ID が無い (spec で warning) | — | `warc/mandatory-fields` (warning) | 0 |
+| `warc11-warcinfo-payload-digest.wacz` | payload の定義が無い warcinfo に WARC-Payload-Digest を書く (§5.9。spec で warning) | — | `warc/fields-by-type` (warning) | 0 |
+| `warc11-filename-on-response.wacz` | response の記録に warcinfo だけの WARC-Filename を書く (spec で warning) | — | `warc/fields-by-type` (warning) | 0 |
+| `warc11-target-uri-angle-brackets.wacz` | WARC-Target-URI を山括弧で包む (1.1 で文法から外れた。spec で warning) | — | `warc/field-values` (warning) | 0 |
+| `warc11-response-without-content-type.wacz` | block のある response に Content-Type が無い (should。spec で info) | — | `warc/content-type` (info) | 0 |
+| `warc11-revisit-without-digest.wacz` | identical-payload-digest の revisit に WARC-Payload-Digest が無い (spec で warning) | — | `warc/revisit` (warning) | 0 |
+| `warc11-segment-number-gap.wacz` | 分割の列の continuation の番号が 2, 4 と飛ぶ (spec で warning) | — | `warc/segmentation` (warning) | 0 |
 
 ### profile で severity が変わる標本
 
@@ -78,6 +88,14 @@ corpus の `manifest.json` から `corpus:docs` が生成します。再生成�
 | `reserved-dir-extra-file.wacz` | `wacz/reserved-dirs-clean` | warning | warning | info |
 | `reserved-dir-extra-file.wacz` | `datapackage/resources-complete` | warning | warning | info |
 | `datapackage-orphan-file.wacz` | `datapackage/resources-complete` | warning | warning | info |
+| `warc11-version-1-0.wacz` | `warc/record-structure` | warning | error | info |
+| `warc11-missing-record-id.wacz` | `warc/mandatory-fields` | warning | error | info |
+| `warc11-warcinfo-payload-digest.wacz` | `warc/fields-by-type` | warning | error | info |
+| `warc11-filename-on-response.wacz` | `warc/fields-by-type` | warning | error | info |
+| `warc11-target-uri-angle-brackets.wacz` | `warc/field-values` | warning | error | info |
+| `warc11-response-without-content-type.wacz` | `warc/content-type` | info | warning | info |
+| `warc11-revisit-without-digest.wacz` | `warc/revisit` | warning | error | info |
+| `warc11-segment-number-gap.wacz` | `warc/segmentation` | warning | error | info |
 
 <!-- END corpus-catalog -->
 

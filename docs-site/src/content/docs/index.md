@@ -1,6 +1,6 @@
 ---
 title: wacz-validator-corpus
-description: WACZ specimens for testing wacz-validator validation rules — 29 archives, 28 of them broken on purpose.
+description: WACZ specimens for testing wacz-validator validation rules — all but the controls broken on purpose.
 ---
 
 A collection of WACZ specimens for exercising [wacz-validator](https://uraitakahito.github.io/wacz-validator/)
@@ -8,15 +8,14 @@ validation rules.
 
 ## It is not a collection of good archives
 
-| | count |
-| --- | --- |
-| Deliberately broken | **28** |
-| Passing everything | **2** (`good`, `good-webrecorder`) |
+The specimens whose names start with `good` are the controls: they are valid
+under the default `spec` profile. Every other specimen is broken on purpose, and
+the [catalogue](/catalogue/) lists the rule each one is meant to trip.
 
-This provides WACZ-format sample data to wacz-validator. For 28 of the 29 specimens,
-**producing no findings is a failure**.
+This provides WACZ-format sample data to wacz-validator. For every specimen that
+is broken on purpose, **producing no findings is a failure**.
 
-One of those 28 is not broken so much as loyal to a different spec:
+One of them is not broken so much as loyal to a different spec:
 `datapackage-schema-only` is a valid Data Package v2 descriptor, and it fails
 only because WACZ 1.1 requires the `profile` that v2 removed.
 

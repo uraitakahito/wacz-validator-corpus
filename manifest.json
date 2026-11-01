@@ -670,7 +670,7 @@
     },
     {
       "file": "fixtures/warc-payload-digest-bad.wacz",
-      "description": "WARC-Payload-Digest header が実体と不一致 — warning",
+      "description": "応答の WARC-Payload-Digest が実体と不一致 — warning",
       "$schema": null,
       "expect": {
         "valid": true,
@@ -908,6 +908,306 @@
           "issues": [
             {
               "rule": "datapackage/resources-complete",
+              "severity": "info"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "file": "fixtures/warc11-version-1-0.wacz",
+      "description": "WARC の記録が WARC/1.0 を名乗る (1.1 の決まりで見て版を告げる。spec で warning)",
+      "$schema": null,
+      "byProfile": {
+        "spec": {
+          "valid": true,
+          "issues": [
+            {
+              "rule": "warc/record-structure",
+              "severity": "warning"
+            }
+          ]
+        },
+        "browserhive": {
+          "valid": false,
+          "issues": [
+            {
+              "rule": "warc/record-structure",
+              "severity": "error"
+            }
+          ]
+        },
+        "lenient": {
+          "valid": true,
+          "issues": [
+            {
+              "rule": "warc/record-structure",
+              "severity": "info"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "file": "fixtures/warc11-lf-line-endings.wacz",
+      "description": "WARC の記録の見出しの行が CRLF でなく LF で終わる — error",
+      "$schema": null,
+      "expect": {
+        "valid": false,
+        "issues": [
+          {
+            "rule": "warc/record-structure",
+            "severity": "error"
+          }
+        ]
+      }
+    },
+    {
+      "file": "fixtures/warc11-content-length-mismatch.wacz",
+      "description": "warcinfo の Content-Length が block の実体と合わない — error",
+      "$schema": null,
+      "expect": {
+        "valid": false,
+        "issues": [
+          {
+            "rule": "warc/record-structure",
+            "severity": "error"
+          }
+        ]
+      }
+    },
+    {
+      "file": "fixtures/warc11-missing-record-id.wacz",
+      "description": "warcinfo に WARC-Record-ID が無い (spec で warning)",
+      "$schema": null,
+      "byProfile": {
+        "spec": {
+          "valid": true,
+          "issues": [
+            {
+              "rule": "warc/mandatory-fields",
+              "severity": "warning"
+            }
+          ]
+        },
+        "browserhive": {
+          "valid": false,
+          "issues": [
+            {
+              "rule": "warc/mandatory-fields",
+              "severity": "error"
+            }
+          ]
+        },
+        "lenient": {
+          "valid": true,
+          "issues": [
+            {
+              "rule": "warc/mandatory-fields",
+              "severity": "info"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "file": "fixtures/warc11-warcinfo-payload-digest.wacz",
+      "description": "payload の定義が無い warcinfo に WARC-Payload-Digest を書く (§5.9。spec で warning)",
+      "$schema": null,
+      "byProfile": {
+        "spec": {
+          "valid": true,
+          "issues": [
+            {
+              "rule": "warc/fields-by-type",
+              "severity": "warning"
+            }
+          ]
+        },
+        "browserhive": {
+          "valid": false,
+          "issues": [
+            {
+              "rule": "warc/fields-by-type",
+              "severity": "error"
+            }
+          ]
+        },
+        "lenient": {
+          "valid": true,
+          "issues": [
+            {
+              "rule": "warc/fields-by-type",
+              "severity": "info"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "file": "fixtures/warc11-filename-on-response.wacz",
+      "description": "response の記録に warcinfo だけの WARC-Filename を書く (spec で warning)",
+      "$schema": null,
+      "byProfile": {
+        "spec": {
+          "valid": true,
+          "issues": [
+            {
+              "rule": "warc/fields-by-type",
+              "severity": "warning"
+            }
+          ]
+        },
+        "browserhive": {
+          "valid": false,
+          "issues": [
+            {
+              "rule": "warc/fields-by-type",
+              "severity": "error"
+            }
+          ]
+        },
+        "lenient": {
+          "valid": true,
+          "issues": [
+            {
+              "rule": "warc/fields-by-type",
+              "severity": "info"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "file": "fixtures/warc11-target-uri-angle-brackets.wacz",
+      "description": "WARC-Target-URI を山括弧で包む (1.1 で文法から外れた。spec で warning)",
+      "$schema": null,
+      "byProfile": {
+        "spec": {
+          "valid": true,
+          "issues": [
+            {
+              "rule": "warc/field-values",
+              "severity": "warning"
+            }
+          ]
+        },
+        "browserhive": {
+          "valid": false,
+          "issues": [
+            {
+              "rule": "warc/field-values",
+              "severity": "error"
+            }
+          ]
+        },
+        "lenient": {
+          "valid": true,
+          "issues": [
+            {
+              "rule": "warc/field-values",
+              "severity": "info"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "file": "fixtures/warc11-response-without-content-type.wacz",
+      "description": "block のある response に Content-Type が無い (should。spec で info)",
+      "$schema": null,
+      "byProfile": {
+        "spec": {
+          "valid": true,
+          "issues": [
+            {
+              "rule": "warc/content-type",
+              "severity": "info"
+            }
+          ]
+        },
+        "browserhive": {
+          "valid": true,
+          "issues": [
+            {
+              "rule": "warc/content-type",
+              "severity": "warning"
+            }
+          ]
+        },
+        "lenient": {
+          "valid": true,
+          "issues": [
+            {
+              "rule": "warc/content-type",
+              "severity": "info"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "file": "fixtures/warc11-revisit-without-digest.wacz",
+      "description": "identical-payload-digest の revisit に WARC-Payload-Digest が無い (spec で warning)",
+      "$schema": null,
+      "byProfile": {
+        "spec": {
+          "valid": true,
+          "issues": [
+            {
+              "rule": "warc/revisit",
+              "severity": "warning"
+            }
+          ]
+        },
+        "browserhive": {
+          "valid": false,
+          "issues": [
+            {
+              "rule": "warc/revisit",
+              "severity": "error"
+            }
+          ]
+        },
+        "lenient": {
+          "valid": true,
+          "issues": [
+            {
+              "rule": "warc/revisit",
+              "severity": "info"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "file": "fixtures/warc11-segment-number-gap.wacz",
+      "description": "分割の列の continuation の番号が 2, 4 と飛ぶ (spec で warning)",
+      "$schema": null,
+      "byProfile": {
+        "spec": {
+          "valid": true,
+          "issues": [
+            {
+              "rule": "warc/segmentation",
+              "severity": "warning"
+            }
+          ]
+        },
+        "browserhive": {
+          "valid": false,
+          "issues": [
+            {
+              "rule": "warc/segmentation",
+              "severity": "error"
+            }
+          ]
+        },
+        "lenient": {
+          "valid": true,
+          "issues": [
+            {
+              "rule": "warc/segmentation",
               "severity": "info"
             }
           ]
