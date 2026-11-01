@@ -1,8 +1,7 @@
 # wacz-validator-corpus
 
 [wacz-validator](https://github.com/uraitakahito/wacz-validator) の validation rule を検証する
-ための WACZ 標本集。**29 本のうち 28 本は意図的に壊してあり**、期待結果は
-`manifest.json` に集約しています。
+ための WACZ 標本集。**名前が `good` で始まる対照のほかは、意図的に壊してあり**、期待結果は `manifest.json` に集約しています。
 
 📖 **[ドキュメント](https://uraitakahito.github.io/wacz-validator-corpus/)**
 （[日本語](https://uraitakahito.github.io/wacz-validator-corpus/ja/)）

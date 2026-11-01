@@ -51,20 +51,19 @@ manifest)" the same shape, and they would become indistinguishable.
 `corpus-driven` uses the presence of this key to detect a stale manifest and
 skip.
 
-**28 of the 29 are `null`.** Exactly one specimen declares a Data Package v2
-`$schema` — `datapackage-schema-only`; the rest name their contract with v1's
-`profile`. That is why the `$schema` column in the [catalogue](../catalogue/) is
+**Almost every value is `null`.** Only `datapackage-schema-only` declares a
+Data Package v2 `$schema`; the rest name their contract with v1's `profile`. That is why the `$schema` column in the [catalogue](../catalogue/) is
 `—` on nearly every row — it is not a rendering gap, it is the recorded fact.
 
 ## `defaultProfile` decides how the short form is read
 
 wacz-validator can validate the same archive under three profiles — `spec`,
 `browserhive`, `lenient` — and the rules are the same set with severities
-re-graded. **17 of the 29 specimens produce different results depending on which
-one you pick.**
+re-graded. **Many specimens produce different results depending on which one
+you pick** — those carry `byProfile` in the manifest.
 
-For the other 12 the result is identical everywhere, so the manifest writes a
-single `expect` rather than repeating it three times. That raises a question:
+The rest produce the same result everywhere, so the manifest writes a single
+`expect` rather than repeating it three times. That raises a question:
 *which* profile is that one value from? `defaultProfile` answers it.
 
 ```ts

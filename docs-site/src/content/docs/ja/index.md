@@ -1,6 +1,6 @@
 ---
 title: wacz-validator-corpus
-description: wacz-validator の validation rule を検証するための WACZ 標本集。29 本のうち 28 本は意図的に壊してあります。
+description: wacz-validator の validation rule を検証するための WACZ 標本集。対照のほかは意図的に壊してあります。
 ---
 
 [wacz-validator](https://uraitakahito.github.io/wacz-validator/ja/) の validation rule を
@@ -8,15 +8,13 @@ description: wacz-validator の validation rule を検証するための WACZ �
 
 ## 「正しいアーカイブ」を集めたものではありません
 
-| | 件数 |
-| --- | --- |
-| 意図的に壊してあるもの | **28** |
-| 全 rule を通るもの | **2**（`good` / `good-webrecorder`） |
+名前が `good` で始まる標本が対照で、既定の profile（`spec`）では valid になります。
+それ以外の標本はすべて意図的に壊してあり、それぞれが踏ませる rule は[カタログ](/catalogue/)にあります。
 
 これは wacz-validator に WACZ 形式のサンプルデータを提供するものです。
-**28 件については「何も指摘が出ない」ことが失敗**です。
+**意図的に壊した標本については「何も指摘が出ない」ことが失敗**です。
 
-うち 1 件は壊れているというより、別の仕様に忠実です ——
+そのうち 1 本は壊れているというより、別の仕様に忠実です ——
 `datapackage-schema-only` は Data Package v2 として正しい descriptor で、
 v2 が廃止した `profile` を WACZ 1.1 が要求するために失敗します。
 
